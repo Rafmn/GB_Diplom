@@ -1,3 +1,4 @@
+import os
 from tkinter import *
 from tkinter import ttk
 
@@ -13,3 +14,21 @@ def tkinter(list):
     l_listbox.pack(anchor=NW, fill=X, padx=5, pady=5)    
     
     root.mainloop()
+
+def questionConvert():
+    root = Tk()
+    root.geometry("300x150")
+    root.title("Конвертация")
+
+    label = Label(text="Сконвентировать книгу в устройство Kindle?") 
+    label.pack()  
+              
+    btnY = ttk.Button(text="Yes", command=convert)
+    btnN = ttk.Button(text="No", command=quit)
+    btnY.pack(fill=X)
+    btnN.pack(fill=X)
+    root.mainloop()
+
+def convert():
+    os.system("python 'DragAndDrop.py'")
+

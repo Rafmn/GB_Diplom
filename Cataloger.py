@@ -2,7 +2,7 @@ import os
 import fnmatch
 from bs4 import BeautifulSoup
 
-from TkinterWindow import tkinter
+from TkinterWindow import tkinter, questionConvert
 
 # Получение списка файлов в папке Books и сохранение их в list_of_files
 list_of_files = []
@@ -36,3 +36,7 @@ for i in range(len(list_of_files)):
 
 # Отправление списка в окно Tkinter
 tkinter(myList)
+
+# Запрос на конвертацию файла
+questionConvert()
+
