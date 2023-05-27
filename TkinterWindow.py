@@ -1,6 +1,7 @@
 import os
 from tkinter import *
 from tkinter import ttk
+from tkinter import Menu  
 
 def tkinter(list):
     root = Tk()
@@ -11,8 +12,14 @@ def tkinter(list):
 
     l_var = Variable(value=list)
     l_listbox = Listbox(root, listvariable=l_var, yscrollcommand = scrolbar.set)
-    l_listbox.pack(anchor=NW, fill=X, padx=5, pady=5)    
-    
+    l_listbox.pack(anchor=NW, fill=X, padx=5, pady=5)   
+
+    menu = Menu(root)   
+    new_item = Menu(menu)  
+    new_item.add_command(label='Поиск')  
+    menu.add_cascade(label='Файл', menu=new_item)  
+    root.config(menu=menu)
+
     root.mainloop()
 
 def questionConvert():

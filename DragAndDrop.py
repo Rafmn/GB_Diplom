@@ -1,4 +1,5 @@
 import subprocess
+from tkinter import filedialog
 
 def drop(event):
     global path_file
@@ -19,7 +20,6 @@ root1.title("Прием *fb2")
 lb = tk.Listbox(root1)
 lb.insert(1, "Переместите сюда *fb2")
 
-# register the listbox as a drop target
 lb.drop_target_register(DND_FILES)
 lb.dnd_bind('<<Drop>>', drop)
 quitButton = ttk.Button(text="Конвентировать", command=root1.destroy)
@@ -27,8 +27,8 @@ lb.pack()
 quitButton.pack()
 root1.mainloop()
 
-subprocess.run(['/usr/local/fb2c_linux_amd64/fb2c', '-c', 'configuration.toml', 'convert', '--to', 'azw3', path_file, '/run/media/marat/Kindle/documents'])
-subprocess.run(['/usr/local/fb2c_linux_amd64/fb2c', 'synccovers', '/run/media/marat/Kindle/documents'])
+subprocess.call(['./fb2c_linux_amd64/fb2c', '-c', './fb2c_linux_amd64/configuration.toml', 'convert', '--to', 'azw3', path_file, '/run/media/marat/Kindle/documents'])
+subprocess.call(['./fb2c_linux_amd64/fb2c', 'synccovers', '/run/media/marat/Kindle/documents'])
 
 print("Successfully")
 

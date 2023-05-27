@@ -7,14 +7,10 @@ from TkinterWindow import tkinter, questionConvert
 # Получение списка файлов в папке Books и сохранение их в list_of_files
 list_of_files = []
 listOfFiles = os.listdir("./Books")
-# listOfFiles1 = os.listdir("/home/marat/Library")
 pattern = "*.fb2"
 for entry in listOfFiles:
     if fnmatch.fnmatch(entry, pattern):
         list_of_files.append(entry)
-# for entry in listOfFiles1:
-#     if fnmatch.fnmatch(entry, pattern):
-#         list_of_files.append(entry)
 
 # Извлечение данных из файла
 def get_fb2_info(fname, tag):
