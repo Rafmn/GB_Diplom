@@ -2,3 +2,5 @@
 Books
 Копия Шаблон презентаций для оформления проекта (1).pptx.odp
 __pycache__
+.gitignore
+conversion.log

@@ -2,14 +2,14 @@ import os
 import fnmatch
 from bs4 import BeautifulSoup
 
-from TkinterWindow import tkinter, questionConvert
+from tkinterWindow import tkinter
 
 # Получение списка файлов в папке Books и сохранение их в list_of_files
 list_of_files = []
 listOfFiles = os.listdir("./Books")
-pattern = "*.fb2"
+PATTERN = "*.fb2"
 for entry in listOfFiles:
-    if fnmatch.fnmatch(entry, pattern):
+    if fnmatch.fnmatch(entry, PATTERN):
         list_of_files.append(entry)
 
 # Извлечение данных из файла
@@ -21,8 +21,8 @@ def get_fb2_info(fname, tag):
         return soup.find(tag, {'value': True})['value']
     elif soup.find(tag):
         return soup.find(tag).text
-    
-# Вывод списка в консоль
+
+# Создание списка книг с данными
 myList = []
 for i in range(len(list_of_files)):
     author_f = get_fb2_info(f'./Books/{list_of_files[i]}', 'author').replace("\n", " ")
@@ -31,8 +31,7 @@ for i in range(len(list_of_files)):
     myList.append(s)
 
 # Отправление списка в окно Tkinter
-tkinter(myList)
+tkinter(myList, list_of_files)
 
 # Запрос на конвертацию файла
-questionConvert()
-
+# questionConvert()
