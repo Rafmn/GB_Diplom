@@ -4,6 +4,9 @@ charset-normalizer==3.1.0
 colorama==0.4.6
 idna==3.4
 lxml==4.9.2
+mysql-connector==2.2.9
+mysql-connector-python==8.1.0
+protobuf==4.21.12
 requests==2.29.0
 shellpy==0.5.1
 soupsieve==2.4.1

@@ -27,6 +27,7 @@ def tkinter(list, list_of_files):
 
     Button(root, text="Конвертировать", command = convert).pack(fill=X)
 
+    list = [(i[1], i[2]) for i in list]
     l_var = Variable(value=list)
     l_listbox = Listbox(root, listvariable=l_var, yscrollcommand = scrolbar.set)
     l_listbox.pack(anchor=NW, fill=X, padx=5, pady=5)   
