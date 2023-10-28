@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-
+import ebookmeta
 
 class Fb2_info:
     def __init__(self, fname=None) -> None:
@@ -14,13 +14,9 @@ class Fb2_info:
             return soup.find(tag, {'value': True})['value']
         elif soup.find(tag):
             return soup.find(tag).text
-
-    # Создание списка книг с данными
-    def create_list_books(self, list_of_files):
-        myList = []
-        for i in enumerate(list_of_files):
-            author_f = self.get_fb2_info(f'./Books/{i[1]}', 'author').replace("\n", " ")
-            book_title_f = self.get_fb2_info(f'./Books/{i[1]}', 'book-title').replace("\n", " ")
-            s = str(i[0]+1) + '. ' + '"' + book_title_f + '"' + ',' + ' ' + author_f
-            myList.append(s)
-        return myList
+        
+    def get_info_by_meta(self, furl, tag):
+        meta = ebookmeta.get_metadata(furl)  # returning Metadata class
+        match tag:
+            case 'description':
+                return meta.description

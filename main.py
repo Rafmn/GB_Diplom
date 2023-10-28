@@ -18,8 +18,8 @@ for entry in listOfFiles:
             book_title = Fb2_info().get_fb2_info(absolute_path_file, 'book-title')
             DB(author, book_title, entry, absolute_path_file).add_book()
 
-# Отправление списка в окно Tkinter
-# myList = Fb2_info().create_list_books(list_of_files)
-myList = DB().get_list_books()
-list_of_files = [i[3] for i in myList]
-tkinter(myList, list_of_files)
+
+myList = DB().get_list_books() # Получение всей таблицы из базы данных MySQL
+list_of_files_urls = [i[4] for i in myList]
+
+tkinter(myList, list_of_files_urls)

@@ -4,3 +4,4 @@ Books
 __pycache__
 .gitignore
 conversion.log
+private_data.py

@@ -10,6 +10,7 @@ PORT = private_data.port
 
 
 class DB():
+    """Работа с базой данных MySQL"""
     def __init__(self, author=None, book=None, namefile=None, file=None):
         self.author = author
         self.book = book
@@ -47,7 +48,7 @@ class DB():
                     author VARCHAR(100),
                     book_title VARCHAR(100),
                     file_name VARCHAR(100),
-                    url_file VARCHAR(100)
+                    url_file VARCHAR(200)
                 )
                 """
             # with cursor:
@@ -102,7 +103,7 @@ class DB():
             result = cursor.fetchall()
             for x in result:
                 list_of_files.append(x)
-        except:
+        except OSError:
             cnx.rollback()
 
         cursor.close()
