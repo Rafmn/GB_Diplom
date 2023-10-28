@@ -5,3 +5,5 @@ __pycache__
 .gitignore
 conversion.log
 private_data.py
+add_book.py
+DragAndDrop.py
