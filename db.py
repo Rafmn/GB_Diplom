@@ -11,6 +11,7 @@ PORT = private_data.port
 
 class DB():
     """Работа с базой данных MySQL"""
+
     def __init__(self, author=None, book=None, namefile=None, file=None):
         self.author = author
         self.book = book
@@ -55,7 +56,7 @@ class DB():
             cursor.execute(create_books_table_query)
             cnx.commit()
 
-        except mysql.connector.Error as e:
+        except mysql.connector.Error:
             # Если база существует, переподключаемся к ней:
             cursor.close()
             cnx.close()
@@ -64,10 +65,7 @@ class DB():
                                           host=HOST_NAME,
                                           port=PORT,
                                           database=DB_NAME)
-            print(e)
 
-        # cursor.close()
-        # cnx.close()
         cursor = cnx.cursor()
         return cursor, cnx
 
@@ -94,6 +92,17 @@ class DB():
         cnx.close()
         return bool(result)
 
+    def search_title_book(self, title: str):
+        """Поиск по названию книги"""
+        cursor, cnx = DB.connect_db(self)
+        search_title = """SELECT * FROM books WHERE book_title LIKE %s"""
+        book_name = [('%'+title+'%'),]
+        cursor.execute(search_title, book_name)
+        result = cursor.fetchall()
+        cursor.close()
+        cnx.close()
+        return result
+
     def get_list_books(self):
         """Получение таблицы из базы"""
         cursor, cnx = DB.connect_db(self)
@@ -109,4 +118,4 @@ class DB():
         cursor.close()
         cnx.close()
 
-        return list_of_files
+        return tuple(list_of_files)

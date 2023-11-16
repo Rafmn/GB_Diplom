@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import ebookmeta
 
+
 class Fb2_info:
     def __init__(self, fname=None) -> None:
         self.fname = fname
@@ -14,7 +15,7 @@ class Fb2_info:
             return soup.find(tag, {'value': True})['value']
         elif soup.find(tag):
             return soup.find(tag).text
-        
+
     def get_info_by_meta(self, furl, tag):
         meta = ebookmeta.get_metadata(furl)  # returning Metadata class
         match tag:
