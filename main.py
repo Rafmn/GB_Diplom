@@ -1,5 +1,4 @@
 from tkinterWindow import tkinter
-
 from db import DB
 
 
